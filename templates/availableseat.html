@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{%block content%}
+{{i.slot1}} {{i.slot2}} {{i.slot3}}
+
+
+<h1 style="margin-top: 150px;color: red; text-decoration: underline;text-align: center;">[Available Seats]</h1>
+<p style="text-align: center; color: red; font-weight: bold;">Choose Another Date<input type="date" id="dt" name="dt" style="font-weight:bold;width:fit-content;height: 40px;"> </p>
+<table style="width:50%;margin-top:30px;margin-left: 450px;">
+    {%for i in obj%}
+
+    <tr>
+        <th><button style="background-color:yellow; width: 100px;font-weight:bold;border-radius:10%;"><a href="/" style="text-decoration:none;">SEAT {{i.seat_number}}</a></button></th>
+        <th><button style="background-color:yellow; width: 100px;font-weight:bold;border-radius:20%;"><a href="/" style="text-decoration:none;">SLOT 1</a></button></th>
+        <th><button style="background-color:yellow; width: 100px;font-weight:bold;border-radius:20%;"><a href="/"style="text-decoration:none;">SLOT 2</a></button></th>
+        <th><button style="background-color:yellow; width: 100px;font-weight:bold;border-radius:20%;"><a href="/"style="text-decoration:none;">SLOT 3</a></button></th>
+        <th><button style="background-color:green; width: 100px;font-weight:bold;border-radius:10%;"><a href="/"style="text-decoration:none;color:black">Book All Available</a></button></th>
+
+
+    </tr>
+    <br>
+{%endfor%}
+
+</table>
+
+{%endblock%}
