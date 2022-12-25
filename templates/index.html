@@ -15,7 +15,7 @@
   </head>
 
 
-  <body style="background-color:black;">
+  <body style="background-color:grey;">
    
 
     <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: blue;">
@@ -69,7 +69,13 @@
         </div>
       </nav>
 <p> Home page</p>
+       <a href="{%url 'davailable'%}"><input type="button" value="go to booking"
+        style="background-color:green; width: 150px;font-weight:bold;border-radius:10%;text-decoration:none;color:black;"></a>
+
+
+
       {% block content %}
+      
         {% endblock %}
 
 

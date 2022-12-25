@@ -2,16 +2,16 @@
 {%block content%}
 
 
-<p> availavle</P>
+<p> availavle2</P>
 
 
-<h1 style="margin-top: 150px;color: red; text-decoration: underline;text-align: center;">[ Today's Available Seats]</h1>
+<h1 style="margin-top: 150px;color: red; text-decoration: underline;text-align: center;">[Available Seats]</h1>
 
 <form method="post" action="http://127.0.0.1:8000/davailable2/">
     {% csrf_token %}
 <div class="container" style="margin-left:800px;" >
 <p style="text-align: center; color: red; font-weight: bold;float:left;">Choose Another Date</p>
-<input type="date" onload="getDate()" id="dt" name="dt" style="font-weight:bold;width:fit-content;height: 40px;float:left;margin-left: 6px;"> 
+<input type="date" id="dt" name="dt" style="font-weight:bold;width:fit-content;height: 40px;float:left;margin-left: 6px;"> 
 <input type="submit" name="Go" id="Go" value="Go" style="float:left; background-color:green; width: 70px;font-weight:bold;border-radius:10%;margin-left: 6px;">
 </div>
 </form>
@@ -42,14 +42,5 @@
 {%endfor%}
 
 </table>
-<script>
-    function getDate(){
-    var today = new Date();
-    
-    document.getElementById("date").value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' +
-    ('0' + today.getDate()).slice(-2);
-    
-    
-    }
-    </script>
+
 {%endblock%}
