@@ -5,12 +5,23 @@ urlpatterns = [
     path('todayspecial/',views.todayspecial,name='todayspecial'),
     path('davailable/',views.davailable,name='davailable'),
     path('davailable2/',views.davailable2,name='davailable2'),
-    path('booking/',views.Booking,name='Booking'),
-
-
+    path('booking/',views.booking,name='booking'),
     path('booked/',views.booked,name='booked'),
     path('premium/',views.premium,name='premium'),
     path('about/',views.about,name='about'),
+    path('bookingnotallowed/',views.bookingnotallowed,name='bookingnotallowed'),
+    path('logout/',views.logout,name='logout'),
+    path('signup/',views.signup,name='signup'),
+    path('login/',views.login,name='login'),
+
+    
+
+
+
+
+
+
+    
 
 
 

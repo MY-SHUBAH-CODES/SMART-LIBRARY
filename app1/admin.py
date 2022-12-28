@@ -4,7 +4,7 @@ from.models import *
 
 
 class SeatAdmin(admin.ModelAdmin):
-    list_display = ('seat_number', 'creted_date', 'seat_discription')
+    list_display = ('seat_number', 'creted_date', 'seat_discription',"slot1","slot2","slot3")
 admin.site.register(Seat,SeatAdmin)
 
 class AllBookingAdmin(admin.ModelAdmin):

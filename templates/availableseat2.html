@@ -2,10 +2,7 @@
 {%block content%}
 
 
-<p> availavle2</P>
-
-
-<h1 style="margin-top: 150px;color: red; text-decoration: underline;text-align: center;">[Available Seats]</h1>
+<h1 style="margin-top: 120px;color: red; text-decoration: underline;text-align: center;">[Available Seats]</h1>
 
 <form method="post" action="http://127.0.0.1:8000/davailable2/">
     {% csrf_token %}
@@ -22,21 +19,21 @@
         <!-- {%if i.seat_number in bseat} -->
         {%if i in obj1 %}
 
-        <th><button style="background-color:yellow; width: 100px;font-weight:bold;border-radius:10%;"><a href="/" style="text-decoration:none;">SEAT {{i.seat_number}}</a></button></th>
+        <th><button style="background-color:yellow; width: 100px;font-weight:bold;border-radius:10%;"><a href="#" style="text-decoration:none;">SEAT {{i.seat_number}}</a></button></th>
         
-        <th><button style="background-color:yellow; width: 100px;font-weight:bold;border-radius:20%;"><a href="{%url 'davailable' %}" style="text-decoration:none;">SLOT{{i.slot}}</a></button></th>
+        <th><button style="background-color:yellow; width: 100px;font-weight:bold;border-radius:20%;"><a href="#" style="text-decoration:none;">SLOT{{i.slot}}</a></button></th>
 
-        <th><button style="background-color:red; width: 100px;font-weight:bold;border-radius:10%;"><a href="/"style="text-decoration:none;color:black">Booked</a></button></th> 
+        <th><button style="background-color:red; width: 100px;font-weight:bold;border-radius:10%;"><a href="{%url 'bookingnotallowed' %}"style="text-decoration:none;color:black">Booked</a></button></th> 
         
         {%else%}
 
-        <th><button style="background-color:yellow; width: 100px;font-weight:bold;border-radius:10%;"><a href="/" style="text-decoration:none;">SEAT {{i.seat_number}}</a></button></th>
+        <th><button style="background-color:yellow; width: 100px;font-weight:bold;border-radius:10%;"><a href="#" style="text-decoration:none;">SEAT {{i.seat_number}}</a></button></th>
         
-        <th><button style="background-color:yellow; width: 100px;font-weight:bold;border-radius:20%;"><a href="{%url 'davailable' %}" style="text-decoration:none;">SLOT{{i.slot}}</a></button></th>
+        <th><button style="background-color:yellow; width: 100px;font-weight:bold;border-radius:20%;"><a href="#" style="text-decoration:none;">SLOT{{i.slot}}</a></button></th>
 
-        <th><button style="background-color:green; width: 100px;font-weight:bold;border-radius:10%;"><a href="/"style="text-decoration:none;color:black">Book Now</a></button></th> 
+        <th><button style="background-color:green; width: 100px;font-weight:bold;border-radius:10%;"><a href="{%url 'booking' %}"style="text-decoration:none;color:black">Book Now</a></button></th> 
         
-{%endif%}
+        {%endif%}
     </tr>
     <br>
 {%endfor%}

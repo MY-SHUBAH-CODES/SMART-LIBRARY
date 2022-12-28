@@ -1,0 +1,59 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+                <div class="container" style="margin-right: 20px;margin-top: 40px;margin-left: 20;">
+                   
+                        <div class="col-md-6 col-lg-7 d-flex  align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black" style=" border-radius:1rem 1rem 1rem 1rem ;background-image:url('/static/images/login_bg.jpg');">
+                                 <!-- <div class="container">
+                        <img src="/static/images/freewatch_logo.png" alt="Simply Easy Learning" width="200" height="130">
+                    </div> -->
+
+                                <form action="{% url 'signup' %}" method="post">
+                                    {% csrf_token %}
+
+                                    <div class="d-flex align-items-center mb-3 pb-1">
+                                        <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i> 
+                                       
+                                    </div>
+
+                                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;color: white;">Sign up here
+                                    </h5>
+                                    {% if error_message %}
+                                    <p class=p-d ml-b style="background-color: #ff0000;">{{ error_message }}</p>
+        
+                                    {% endif %}
+
+                                    <div class="form-outline mb-4 "style="color:white;">
+                                        <input name="username" value="" type="text" class="form-control" />
+                                        <label class="form-label" for="form2Example17">username</label>
+                                    </div>
+                                   
+
+                                    <div class="form-outline mb-4"style="color:white;">
+                                        <input name="password" type="text" class="form-control" />
+                                        <label class="form-label" for="form2Example27">Password</label>
+                                    </div>
+
+                                     <div class="form-outline mb-4"style="color:white;">
+                                        <input name="password_again" type="text" class="form-control" />
+                                        <label class="form-label" for="form2Example27">Re-enter Password</label>
+                                    </div>
+
+                                    <div class="pt-1 mb-4">
+                                        <input name="submit" type="submit" value="Submit" class="btn btn-success" />
+                                        &nbsp;
+                                    </div>
+            
+                                    <p class="mb-5 pb-lg-2" style="color:white;">Already user? <a href="{%url 'login'%}"
+                                            style="color:white;">Login here</a></p>
+                                    <a href="#!" class="small text-muted">Terms of use.</a>
+                                    <a href="#!" class="small text-muted">Privacy policy</a>
+                                </form>
+
+                            </div>
+                        </div>
+                        </div>
+                 
+{%endblock%}
