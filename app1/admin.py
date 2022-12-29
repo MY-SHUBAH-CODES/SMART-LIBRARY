@@ -8,7 +8,7 @@ class SeatAdmin(admin.ModelAdmin):
 admin.site.register(Seat,SeatAdmin)
 
 class AllBookingAdmin(admin.ModelAdmin):
-    list_display = ('check_in_date', 'Seat_number', 'Slot')
+    list_display = ('check_in_date', 'Seat_number', 'Slot','userID')
 admin.site.register(AllBooking,AllBookingAdmin)
 
 

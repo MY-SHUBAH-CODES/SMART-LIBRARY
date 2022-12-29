@@ -105,15 +105,29 @@ def booking(request):
 
 def createbooking(request):
     if request.method=='POST':
+        list=[]
+        flag=0
         date=request.POST['dt']
         seat=request.POST['seat']
         slot=request.POST['slot']
-        if request.user.is_authenticated:
+        allobj1=AllBooking.objects.filter(check_in_date=date)
+        for k in allobj1:
+            dic1={"seat_number":str(k.Seat_number),"slot":str(k.Slot)}
+            list.append(dic1)
+        list2=[{"seat_number":str(seat),"slot":str(slot)}]
+        for i in list:
+            if i in list2:
+                flag+=1
+
+        if request.user.is_authenticated and flag==0:
             obj=AllBooking(check_in_date=date,Seat_number=seat,Slot=slot,userID=request.user)
             obj.save()
-            return HttpResponse("mila data")
-        else:
-            return HttpResponse("unknown user!!")
+            return redirect('/')
+        elif request.user.is_authenticated==False:
+            return redirect('/login/')
+        elif flag!=0:
+            return HttpResponse("this seat for the slot is  aleady booked")
+        
 def booked (request):
     return render(request,'bookedseat.html')
 
