@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -13,6 +14,8 @@ class Seat(models.Model):
         return self.seat_number
     
 class AllBooking(models.Model):
+    bookingid=models.AutoField(primary_key=True)
+    userID = models.ForeignKey(User, on_delete=models.CASCADE)
     check_in_date=models.DateField()
     Seat_number=models.IntegerField()
     Slot=models.IntegerField()

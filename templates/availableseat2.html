@@ -1,43 +1,49 @@
 {% extends 'index.html' %}
 {%block content%}
 
-
-<h1 style="margin-top: 120px;color: red; text-decoration: underline;text-align: center;">[Available Seats]</h1>
-
+<div class="container" style="display: blocked;overflow:hidden;">
+<div class="container" style="background-color:yellow; width:500px;">
+<h1 style="margin-top: 120px;color: red;text-align: center;">Available Seats for date [{{dt}}]</h1>
+</div>
 <form method="post" action="http://127.0.0.1:8000/davailable2/">
     {% csrf_token %}
 <div class="container" style="margin-left:800px;" >
-<p style="text-align: center; color: red; font-weight: bold;float:left;">Choose Another Date</p>
-<input type="date" id="dt" name="dt" style="font-weight:bold;width:fit-content;height: 40px;float:left;margin-left: 6px;"> 
-<input type="submit" name="Go" id="Go" value="Go" style="float:left; background-color:green; width: 70px;font-weight:bold;border-radius:10%;margin-left: 6px;">
+<p style="text-align: center; color:black; font-weight: bold;float:left;background-color: orangered;">Choose Another Date</p>
+<input type="date" id="dt" name="dt" style="font-weight:bold;width:150px;height: 50px;float:left;margin-left: 6px;"> 
+<input type="submit" name="Go" id="Go" value="Go" style="float:left; background-color:green; width:80px;font-weight:bold;border-radius:10%;margin-left: 6px;">
 </div>
 </form>
-<table style="width:20%;margin-top:30px;margin-left: 450px;">
+<table style="width:20%;margin-top:30px;margin-left: 500px;margin-bottom:50px;">
     {%for i in obj%}
 
     <tr>
         <!-- {%if i.seat_number in bseat} -->
         {%if i in obj1 %}
 
-        <th><button style="background-color:yellow; width: 100px;font-weight:bold;border-radius:10%;"><a href="#" style="text-decoration:none;">SEAT {{i.seat_number}}</a></button></th>
+        <th><button style="background-color:yellow; width: 150px;height:50px;font-weight:bold;border-radius:10%;color: black; font-weight:bold;" disabled>SEAT {{i.seat_number}}</button></th>
         
-        <th><button style="background-color:yellow; width: 100px;font-weight:bold;border-radius:20%;"><a href="#" style="text-decoration:none;">SLOT{{i.slot}}</a></button></th>
+        <th><button style="background-color:yellow; width: 150px;height:50px;font-weight:bold;border-radius:10%;color: black;font-weight:bold;"disabled>SLOT{{i.slot}}</button></th>
 
-        <th><button style="background-color:red; width: 100px;font-weight:bold;border-radius:10%;"><a href="{%url 'bookingnotallowed' %}"style="text-decoration:none;color:black">Booked</a></button></th> 
-        
+        <th><a href="{%url 'bookingnotallowed' %}"><input type="submit" name="Booked" id="Booked" value="Booked" style="background-color:red; width: 150px;height:50px;font-weight:bold;border-radius:10%;"></a></th>
+
         {%else%}
+<form method="post" action="http://127.0.0.1:8000/booking/">
+        {% csrf_token %}
 
-        <th><button style="background-color:yellow; width: 100px;font-weight:bold;border-radius:10%;"><a href="#" style="text-decoration:none;">SEAT {{i.seat_number}}</a></button></th>
-        
-        <th><button style="background-color:yellow; width: 100px;font-weight:bold;border-radius:20%;"><a href="#" style="text-decoration:none;">SLOT{{i.slot}}</a></button></th>
+        <input type="hidden" id="bdate" name="bdate" value="{{dt}}">
 
-        <th><button style="background-color:green; width: 100px;font-weight:bold;border-radius:10%;"><a href="{%url 'booking' %}"style="text-decoration:none;color:black">Book Now</a></button></th> 
+        <th><input type="" name="seat" id="seat" value="SEAT {{i.seat_number}}" style="background-color:yellow; width: 150px;height:50px;font-weight:bold;border-radius:10%;color:black;text-align:center; " readonly></th>
         
+        <th><input type="" name="slot" id="slot" value="SLOT {{i.slot}}" style="background-color:yellow; width: 150px;height:50px;font-weight:bold;border-radius:10%;color: black;text-align:center;"readonly></th>
+
+        <th><input type="submit" name="submit" id="submit" value="Click to book" style="background-color:green; width: 150px;height:50px;font-weight:bold;border-radius:10%;"></th>
+</form>
+
         {%endif%}
     </tr>
     <br>
 {%endfor%}
 
 </table>
-
+</div>
 {%endblock%}

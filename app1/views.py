@@ -47,7 +47,8 @@ def davailable(request,):
     'availableseat.html',
     context={
     'obj':list1,        
-    'obj1':list2, 
+    'obj1':list2,
+    'dt':mydate,
             }
        )
     
@@ -85,7 +86,8 @@ def davailable2(request):
     context={
     'obj':list1,        
     'obj1':list2, 
-            }
+       'dt':dt ,  
+             }
        )
 
 
@@ -93,7 +95,25 @@ def todayspecial (request):
     return render(request,'todayspecial.html')
 
 def booking(request):
-    return render(request, 'booking.html')
+    if request.method=='POST':
+        seat=request.POST['seat']
+        slot=request.POST['slot']
+        bdt=request.POST['bdate']
+        stno=seat[5:]
+        slotno=slot[5:]
+    return render(request, 'booking.html',{'seat':stno,'slot':slotno,'bdt':bdt})
+
+def createbooking(request):
+    if request.method=='POST':
+        date=request.POST['dt']
+        seat=request.POST['seat']
+        slot=request.POST['slot']
+        if request.user.is_authenticated:
+            obj=AllBooking(check_in_date=date,Seat_number=seat,Slot=slot,userID=request.user)
+            obj.save()
+            return HttpResponse("mila data")
+        else:
+            return HttpResponse("unknown user!!")
 def booked (request):
     return render(request,'bookedseat.html')
 
@@ -141,7 +161,7 @@ def logout(request):
             "status": "error",
             "message": "kya kr rhe ho yaar!!"
         }
-    return JsonResponse(response)
+    return render(request,'index.html')
 
 #======================================================================================
 

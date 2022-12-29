@@ -6,6 +6,7 @@ urlpatterns = [
     path('davailable/',views.davailable,name='davailable'),
     path('davailable2/',views.davailable2,name='davailable2'),
     path('booking/',views.booking,name='booking'),
+    path('createbooking/',views.createbooking,name='createbooking'),
     path('booked/',views.booked,name='booked'),
     path('premium/',views.premium,name='premium'),
     path('about/',views.about,name='about'),
