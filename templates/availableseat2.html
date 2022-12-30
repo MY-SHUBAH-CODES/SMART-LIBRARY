@@ -2,13 +2,13 @@
 {%block content%}
 
 <div class="container" style="display: blocked;overflow:hidden;">
-<div class="container" style="background-color:yellow; width:500px;">
-<h1 style="margin-top: 120px;color: red;text-align: center;">Available Seats for date [{{dt}}]</h1>
+
+<h1 style="margin-top: 120px;color: red; text-decoration: underline;text-align: center;">Available Seats for date [{{dt}}]</h1>
 </div>
 <form method="post" action="http://127.0.0.1:8000/davailable2/">
     {% csrf_token %}
-<div class="container" style="margin-left:800px;" >
-<p style="text-align: center; color:black; font-weight: bold;float:left;background-color: orangered;">Choose Another Date</p>
+<div class="container" style="margin-left:800px; margin-top:5px;" >
+<p style="text-align: center; color:black; font-weight: bold;float:left;background-color: orangered;margin-top: 35px;">Choose Another Date</p>
 <input type="date" id="dt" name="dt" style="font-weight:bold;width:150px;height: 50px;float:left;margin-left: 6px;"> 
 <input type="submit" name="Go" id="Go" value="Go" style="float:left; background-color:green; width:80px;font-weight:bold;border-radius:10%;margin-left: 6px;">
 </div>

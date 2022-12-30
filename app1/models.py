@@ -19,6 +19,7 @@ class AllBooking(models.Model):
     check_in_date=models.DateField()
     Seat_number=models.IntegerField()
     Slot=models.IntegerField()
+    booking_date=models.CharField(max_length=50,default="NA")
     
     
 

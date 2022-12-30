@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{%block content%}
+<p></p>
+<h1 style="margin-top:30px;color: red; text-decoration: underline;text-align: center;">Your bookings</h1>
+
+
+<table style="width:20%;margin-top:20px;margin-left: 670px;margin-bottom:50px;">
+<tr>
+<th><button style="background-color:yellow; width: 150px;height:50px;font-weight:bold;border-radius:10%;color: black; font-weight:bold;"disabled>Booking ID</button></th>
+<th><button style="background-color:yellow; width: 150px;height:50px;font-weight:bold;border-radius:10%;color: black; font-weight:bold;"disabled>Booking date</button></th>
+<th><button style="background-color:yellow; width: 150px;height:50px;font-weight:bold;border-radius:10%;color: black; font-weight:bold;"disabled>Seat number</button></th>
+<th><button style="background-color:yellow; width: 150px;height:50px;font-weight:bold;border-radius:10%;color: black; font-weight:bold;"disabled>Slot number</button></th>
+<th><button style="background-color:yellow; width: 150px;height:50px;font-weight:bold;border-radius:10%;color: black; font-weight:bold;"disabled>Check in date</button></th>
+</tr> 
+{% for i in data%}
+<tr>
+<th><button style="background-color:yellow; width: 150px;height:50px;font-weight:bold;border-radius:10%;color: black; font-weight:bold;"disabled>{{i.bookingid}}</button></th>
+<th><button style="background-color:yellow; width: 150px;height:50px;font-weight:bold;border-radius:10%;color: black; font-weight:bold;"disabled>{{i.booking_date}}</button></th>
+<th><button style="background-color:yellow; width: 150px;height:50px;font-weight:bold;border-radius:10%;color: black; font-weight:bold;"disabled>{{i.Seat_number}}</button></th>
+<th><button style="background-color:yellow; width: 150px;height:50px;font-weight:bold;border-radius:10%;color: black; font-weight:bold;"disabled>{{i.Slot}}</button></th>
+<th><button style="background-color:yellow; width: 150px;height:50px;font-weight:bold;border-radius:10%;color: black; font-weight:bold;"disabled>{{i.check_in_date}}</button></th>
+<th><button style="background-color:yellow; width: 150px;height:50px;font-weight:bold;border-radius:10%;color: black; font-weight:bold;"disabled><a href="/">See details</a></button></th>
+
+</tr> 
+ {%endfor%}
+
+{%endblock%}
+userID
+
+
+

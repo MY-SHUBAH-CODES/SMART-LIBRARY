@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http.response import HttpResponse
 import datetime
-import time
 from app1.models import *
 from django.contrib.auth import authenticate, login as li, logout as lo
 from django.http import JsonResponse
@@ -10,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 @csrf_exempt
 def home(request):
-    return render(request,"index.html")
+    return render(request,"home.html")
 
 
         
@@ -110,6 +109,8 @@ def createbooking(request):
         date=request.POST['dt']
         seat=request.POST['seat']
         slot=request.POST['slot']
+        mydate=datetime.datetime.today().strftime('%Y-%m-%d')
+
         allobj1=AllBooking.objects.filter(check_in_date=date)
         for k in allobj1:
             dic1={"seat_number":str(k.Seat_number),"slot":str(k.Slot)}
@@ -120,16 +121,20 @@ def createbooking(request):
                 flag+=1
 
         if request.user.is_authenticated and flag==0:
-            obj=AllBooking(check_in_date=date,Seat_number=seat,Slot=slot,userID=request.user)
+            obj=AllBooking(check_in_date=date,Seat_number=seat,Slot=slot,userID=request.user,booking_date=mydate)
             obj.save()
-            return redirect('/')
+            return redirect('/mybooking/')
         elif request.user.is_authenticated==False:
             return redirect('/login/')
         elif flag!=0:
             return HttpResponse("this seat for the slot is  aleady booked")
         
-def booked (request):
-    return render(request,'bookedseat.html')
+def mybooking(request):
+    if request.method=='GET':
+        user=request.user
+        mybooking=AllBooking.objects.filter(userID=user)
+        
+    return render(request,'mybooking.html',{'data':mybooking})
 
 def premium (request):
     return render(request,'premiumseat.html')

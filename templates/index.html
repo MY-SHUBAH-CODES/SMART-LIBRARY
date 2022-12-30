@@ -1,91 +1,70 @@
-{% load static %}
+{%load static%}
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- <link rel="stylesheet" href="home.css"> -->
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{%static 'css/index.css'%}">
+  <script src="https://kit.fontawesome.com/85c910c1e9.js" crossorigin="anonymous"></script>
+  <title>Portfolio</title>
+</head>
 
-   
-  </head>
-
-
-  <body style="background-color:teal;">
-   
-
-    <nav class="navbar navbar-expand-lg navbar-dark " style="background-color:rgba( 48, 25, 52);position:fixed;width:1850px;">
-      <!-- <nav class="navbar navbar-dark bg-dark"></nav> -->
-        <div class="container-fluid" style="background-color:rgba( 48, 25, 52);">
-          <a class="navbar-brand" href="/" style="color:rgba(199, 67, 27, 0.952);font-size:200%">Smartlibrary</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active " aria-current="page" href="/todayspecial"  style="color: rgba(199, 67, 27, 0.952);font-size: 150%;font-weight: bolds;">Today special</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#"></a>
-              </li>
-              <li class="nav-item dropdown" >
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: rgba(199, 67, 27, 0.952);font-size: 150%;">
-                  Seats
-                </a>
-
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: black;color: black;">
-                  <li><a class="dropdown-item" href="{%url 'davailable'%}" style="color: rgba(199, 67, 27, 0.952);font-size: 150%;">Available Seats</a></li>
-                  <li><a class="dropdown-item" href="/booked" style="color: rgba(199, 67, 27, 0.952);font-size: 150%;">Booked Seats</a></li>
-                  <li><a class="dropdown-item" href="/premium" style="color: rgba(199, 67, 27, 0.952);font-size: 150%;">Premium Seats</a></li>
-                  
-
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="/about" tabindex="-1" aria-disabled="true" style="color:rgba(199, 67, 27, 0.952);font-size: 150%;">About Us</a>
-              </li>
-              
-            </ul>
-            <form class="d-flex">
-              {%if user.is_authenticated%}
-              <a class="nav-link " href="{%url 'logout'%}" tabindex="-1" aria-disabled="true" style="color: rgba(199, 67, 27, 0.952);font-size: 150%;">Logout</a>
-              {%else%}
-
-              <a class="nav-link " href="{%url 'signup'%}" tabindex="-1" aria-disabled="true" style="color: rgba(199, 67, 27, 0.952);font-size: 150%;">Signup</a>
-              <a class="nav-link " href="{%url 'login'%}" tabindex="-1" aria-disabled="true" style="color: rgba(199, 67, 27, 0.952);font-size: 150%;">Login</a>
-{%endif%}
+<body>
+      <nav>
+        <ul id="sidemenu">
+          <li><a href="{%url 'home'%}" style="font-weight:bold;">Home</a></li>
+          <li><a href="{%url 'davailable'%}" style="font-weight:bold;">Explore</a>
+          <li><a href="{%url 'mybooking'%}" style="font-weight:bold;">My Bookings</a></li>
+          <li><a href="{%url 'davailable'%}" style="font-weight:bold;">Portfolio</a></li>
+          <li><a href="{%url 'davailable'%}" style="font-weight:bold;">Contact</a></li>
+                        {%if user.is_authenticated%}
+          <li><a href="{%url 'logout'%}" style="font-weight:bold;">Logout</a></li>
+                        {%else%}
+          <li><a href="{%url 'login'%}" style="font-weight:bold;">Login</a></li>
+          <li><a href="{%url 'signup'%}" style="font-weight:bold;">Signup</a></li>
+                        {%endif%}
 
 
+          <i class="fas fa-times" onclick="closemenu()"></i>
+        </ul>
 
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn " type="submit"  style="color: rgba(199, 67, 27, 0.952);">Search</button>
-            </form>
-          </div>
-        </div>
+        <i class="fas fa-bars" onclick="openmenu()"></i>
       </nav>
-      
-        
+   
+  
+{%block content%}
 
-      {% block content %}
-      
-        {% endblock %}
+{%endblock%}
 
+  <script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    function opentab(tabname) {
+      for (tablink of tablinks) {
+        tablink.classList.remove("active-link");
+      }
+      for (tabcontent of tabcontents) {
+        tabcontent.classList.remove("active-tab");
+      }
+      event.currentTarget.classList.add("active-link");
+      document.getElementById(tabname).classList.add("active-tab");
+    }
+  </script>
 
-        <!-- Optional JavaScript; choose one of the two! -->
+  <script>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    var sidemenu = document.getElementById("sidemenu");
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-    </body>
-    </html>
+    function openmenu() {
+      sidemenu.style.right = "0";
+    }
+    function closemenu() {
+      sidemenu.style.right = "-200px";
+    }
+  </script>
+</body>
+
+</html>
