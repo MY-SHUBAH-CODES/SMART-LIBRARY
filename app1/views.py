@@ -130,17 +130,34 @@ def createbooking(request):
             return HttpResponse("this seat for the slot is  aleady booked")
         
 def mybooking(request):
-    if request.method=='GET':
-        user=request.user
+    user=request.user
+    user=str(user)
+    if user=="AnonymousUser":
+        return redirect('/login/')
+
+    elif user=="admin":
+        return redirect('/admin/')
+
+    else:
+        count=AllBooking.objects.filter(userID=user).count()
         mybooking=AllBooking.objects.filter(userID=user)
-        
-    return render(request,'mybooking.html',{'data':mybooking})
+        if count>=1:
+            return render(request,'mybooking.html',{'data':mybooking,})
+        else:
+            return HttpResponse("You dont have any booking yet. got to explore and make any booking to see details")
+
+
+    
 
 def premium (request):
     return render(request,'premiumseat.html')
 
-def about (request):
+def about(request):
     return render(request,'about.html')
+
+def contact(request):
+    return render(request,'contact.html')
+
 
 def bookingnotallowed(request):
     return HttpResponse("this slot is already booked try to booked available slot")

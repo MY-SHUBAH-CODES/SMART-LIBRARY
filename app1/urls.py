@@ -10,6 +10,7 @@ urlpatterns = [
     path('mybooking/',views.mybooking,name='mybooking'),
     path('premium/',views.premium,name='premium'),
     path('about/',views.about,name='about'),
+    path('contact/',views.contact,name='contact'),
     path('bookingnotallowed/',views.bookingnotallowed,name='bookingnotallowed'),
     path('logout/',views.logout,name='logout'),
     path('signup/',views.signup,name='signup'),
